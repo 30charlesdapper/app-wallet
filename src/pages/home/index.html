@@ -18,17 +18,91 @@
         </div>
         <div class="finance-card-container">
             <div id="finance-card-1" class="finance-card">
-                <h3>Total de lançamentos</h3>
+                
             </div>
             <div id="finance-card-2" class="finance-card">
-                <h3>Receitas</h3>
+                
             </div>
             <div id="finance-card-3" class="finance-card">
-                <h3>Despesas</h3>
+                
             </div>
             <div id="finance-card-4" class="finance-card">
-                <h3>Balanços</h3>
+                
             </div>
+        </div>
+        <div class="table-container">
+            <div class="table-content-container">
+                <div class="table-content-header">
+                    <h2>Ultimos lançamentos</h2>
+                    <button onclick="onOpenModal()" class="small">Adicionar</button>
+                </div>
+                <table>
+                    <tr>
+                        <td>Item1</td>
+                        <td>Item2</td>
+                        <td>Item3</td>
+                        <td class="center">Item3</td>
+                        <td class="right">Item3</td>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal-background">
+        <div class="modal-content">
+            <div class="modal-content-header">
+                <h3>Adicionar lançamentos</h3>
+                <button onclick="onCloseModal()" class="small">Fechar</button>
+            </div>
+            <form id="form-finance-release" class="mt large" >
+                <label  for="input-title" >Título</label>
+                <input 
+                id="input-title" 
+                class="mt smaller" 
+                placeholder="Ex: Conta de energia" 
+                type="text"
+                name="input-title"
+                required
+            />
+            <label class="mt large" 
+                for="input-email">
+                Valor
+            </label>
+                <input 
+                id="input-value" 
+                class="mt smaller" 
+                placeholder="Use valores negativos para as despesas" 
+                type="number"
+                step="any"
+                name="input-value"
+                required
+            />
+            <label class="mt large" 
+                for="input-date">
+                Data
+            </label>
+                <input 
+                id="input-date" 
+                class="mt smaller" 
+                placeholder="00/00/0000" 
+                type="date"
+                name="input-date"
+                required
+            />
+            <label class="mt large" 
+                for="input-category">
+                Categoria
+            </label>
+                <select 
+                id="input-category" 
+                class="mt smaller" 
+                type="text"
+                name="input-category"
+                required
+            ></select>
+            <button type="submit" class="mt full-width">Adicionar</button>
+            </form>
         </div>
     </div>
 </body>

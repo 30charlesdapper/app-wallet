@@ -10,18 +10,16 @@ const onCallRegister = async (email, name) => { // chama a função e espera a r
             cache: "no-cache",
             credentials: "same-origin",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
          }
         )
         const user = await response.json()
-        return user
+        return user;
        
     } catch (error) {
         return{error}
-    };
-    
+    };    
 };
-
 
 const onRegister = async () => {
     const email = document.getElementById("input-email").value;
@@ -43,17 +41,14 @@ const onRegister = async () => {
         alert("Falha ao validar e-mail");
         return;
     }
-
-    localStorage.setItem("@WalletApp: userEmail", result.email);
-    localStorage.setItem("@WalletApp: userName", result.name);
-    localStorage.setItem("@WalletApp: userId", result.id);
-    
+    localStorage.setItem("@WalletApp:userEmail", result.email);
+    localStorage.setItem("@WalletApp:userName", result.name);
+    localStorage.setItem("@WalletApp:userId", result.id);
     window.open("../home/index.html", "_self");
 }
 
-
 window.onload = () => {
-    const form = document.getElementById("fomr-register")
+    const form = document.getElementById("form-register")
     form.onsubmit = (event) => {
         event.preventDefault();
         onRegister(); // chamar a função de dados minimos cadastro
