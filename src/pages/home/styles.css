@@ -22,9 +22,24 @@
     height: 72px;
     width: 100vw;
     background-color: #ffffff;
-    padding: 24px 122px;
-    
+    padding: 24px 122px;   
     box-sizing: border-box;
+}
+
+.nav-bar-calendar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+}
+
+.input-calendar {
+    width: 156px;
+    height: 42px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .nav-bar-user-container {
@@ -32,7 +47,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 250px;
+    width: 260px;
     height: 100%;
 }
 

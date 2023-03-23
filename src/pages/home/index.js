@@ -1,10 +1,35 @@
 //const { response } = require("express")
+//aula 14
+const onLogout = () => {
+    localStorage.clear();
+    window.open("../../../index.html", "_self")
+}
+
+//aula 13
+const onDeleteItem = async (id) => {
+    try {
+        const email = localStorage.getItem("@WalletApp: userEmail")
+        const result = await fetch(
+            `https://mp-wallet-app-api.herokuapp.com/finances/${id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    email: email
+                },
+            }
+        )
+            onLoadFinancesData();
+    } catch (error) {
+        alert("Error ao deletar item")
+    }
+}
+//termina aula 13
 
 // aula 10 de front-end 3
 const renderFinancesList = (data) => {
     const table = document.getElementById("finances-table")
     table.innerHTML = ""
-
+//aula 13
     const tableHeader = document.createElement("tr");
 
     const titleText = document.createTextNode("Título");
@@ -37,6 +62,7 @@ const renderFinancesList = (data) => {
     tableHeader.appendChild(actionElement);
 
     table.appendChild(tableHeader)
+//termina aula 13
 
     data.map((item) => {
         const tableRow = document.createElement("tr")
@@ -74,6 +100,8 @@ const renderFinancesList = (data) => {
 
          //delete ação
         const deleteTd = document.createElement("td");
+        deleteTd.style.cursor = "pointer"
+        deleteTd.onclick = () => onDeleteItem(item.id)
         deleteTd.className = "right";
         const deleteText = document.createTextNode("Deletar")
         deleteTd.appendChild(deleteText)
@@ -176,10 +204,10 @@ const renderFinanceElements = (data) => {
 
 const onLoadFinancesData = async () => {
     try {
-        const date = "2022-12-15"
+        const dateInputValue = document.getElementById("select-date").value;
         const email = localStorage.getItem("@WalletApp: userEmail")
         const result = await fetch(
-            `https://mp-wallet-app-api.herokuapp.com/users?email=${date}`,
+            `https://mp-wallet-app-api.herokuapp.com/users?email=${dateInputValue}`,
             {
                 method: "GET",
                 headers: {
@@ -203,7 +231,7 @@ const onLoadUserInfo = () => {
     const email = localStorage.getItem("@WalletApp:userEmail")
     const name = localStorage.getItem("@WalletApp:userName")
 
-    const navbarUserInfo = document.getElementById("nav-bar_user-container")
+    const navbarUserInfo = document.getElementById("nav-bar-user-container")
     const navbarUserAvatar = document.getElementById("nav-bar-user-avatar")
 
     // add user email
@@ -213,10 +241,12 @@ const onLoadUserInfo = () => {
     navbarUserInfo.appendChild(emailElement)
 
     // botao sair
-    const logoutElement = document.createElement("a")
-    const logoutText = document.createTextNode("sair")
-    logoutElement.appendChild(logoutText)
-    navbarUserInfo.appendChild(logoutElement)
+    const logoutElement = document.createElement("a");
+    logoutElement.onclick = () => onLogout();
+    logoutElement.style.cursor = "pointer";
+    const logoutText = document.createTextNode("sair");
+    logoutElement.appendChild(logoutText);
+    navbarUserInfo.appendChild(logoutElement);
 
     // add user first inside avatar
     const nameElement = document.createElement("h3")
@@ -307,16 +337,26 @@ const onCreateFinanceRelease = async (target) => {
     }
 }
 
+const setInitialDate = () => {
+    const dateInput = document.getElementById("select-date");
+    const nowDate = new Date().toISOString().split("T")[0] //name.charAt(0) = T[0] ??
+    dateInput.value = nowDate;
+    dateInput.addEventListener("change", () => {
+        onLoadFinancesData();
+    });
+};
+
 window.onload = () => {
+    setInitialDate();
     onLoadUserInfo();
     onLoadFinancesData();
     onLoadCategories();
-
+   
     const form = document.getElementById("form-finance-release")
     form.onsubmit = (event) => {
-    event.preventDefeault();
-    onCreateFinanceRelease(event.target);
- }
+        event.preventDefeault();
+        onCreateFinanceRelease(event.target);
+    }
 } 
 
 
