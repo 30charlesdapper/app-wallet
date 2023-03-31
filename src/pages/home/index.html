@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../../../style.css">
     <link rel="stylesheet" href="styles.css">
     <script src="index.js"></script>
-    <link rel="stylesheet" href="index.js">
 </head>
 <body>
     <div class="home-content-container">
@@ -14,7 +13,7 @@
             <img src="../../img/logo.png" class="logo-nav-bar" alt="logo wallet">
 
             <div class="nav-bar-calendar-container">
-                <input id="select-date" class="input-calendar" type="date" />
+                <input id="selected-date" class="input-calendar" type="date" />
             </div>
 
             <div id="nav-bar-user-container" class="nav-bar-user-container">
@@ -23,18 +22,13 @@
             </div>
         </div>
         <div class="finance-card-container">
-            <div id="finance-card-1" class="finance-card">
-                
-            </div>
-            <div id="finance-card-2" class="finance-card">
-                
-            </div>
-            <div id="finance-card-3" class="finance-card">
-                
-            </div>
-            <div id="finance-card-4" class="finance-card">
-                
-            </div>
+            <div id="finance-card-1" class="finance-card"></div>
+            
+            <div id="finance-card-2" class="finance-card"></div>
+
+            <div id="finance-card-3" class="finance-card"></div>
+
+            <div id="finance-card-4" class="finance-card"></div>
         </div>
         <div class="table-container">
             <div class="table-content-container">
@@ -42,16 +36,7 @@
                     <h2>Ultimos lançamentos</h2>
                     <button onclick="onOpenModal()" class="small">Adicionar</button>
                 </div>
-                <table>
-                     <!-- <tr>
-                        <td>Item1</td>
-                        <td>Item2</td>
-                        <td>Item3</td>
-                        <td class="center">Item3</td>
-                        <td class="right">Item3</td>
-                    </tr> -->
-                    
-                </table>
+                <table id="finances-table"></table>
             </div>
         </div>
     </div>
@@ -61,8 +46,8 @@
                 <h3>Adicionar lançamentos</h3>
                 <button onclick="onCloseModal()" class="small">Fechar</button>
             </div>
-            <form id="form-finance-release" class="mt large" >
-                <label  for="input-title" >Título</label>
+            <form id="form-finance-release" class="mt" >
+                <label class="mt" for="input-title" >Título</label>
                 <input 
                 id="input-title" 
                 class="mt smaller" 
@@ -71,8 +56,8 @@
                 name="input-title"
                 required
             />
-            <label class="mt large" 
-                for="input-email">
+            <label class="mt" 
+                for="input-value">
                 Valor
             </label>
                 <input 
@@ -84,7 +69,7 @@
                 name="input-value"
                 required
             />
-            <label class="mt large" 
+            <label class="mt" 
                 for="input-date">
                 Data
             </label>
@@ -96,14 +81,13 @@
                 name="input-date"
                 required
             />
-            <label class="mt large" 
+            <label class="mt" 
                 for="input-category">
                 Categoria
             </label>
                 <select 
                 id="input-category" 
                 class="mt smaller" 
-                type="text"
                 name="input-category"
                 required
             ></select>
