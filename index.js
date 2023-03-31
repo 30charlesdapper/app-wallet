@@ -1,3 +1,4 @@
+//aula 5
 const validateUser = async (email) => {
     try {
         const result = await fetch(
@@ -10,22 +11,23 @@ const validateUser = async (email) => {
     }
 }
 
-const onClickLogin = async () => {
-    const email = document.getElementById("input-email").value;
-        if (email.lenght < 5 || !email.includes('@')) {
+const onClickLogin =  async  () => {
+    
+      const email = document.getElementById("input-email").value;
+         if (email.lenght < 5 || !email.includes('@')) {
             alert ("Email invalido!")
             return;
         } 
 
-        const result = await validateUser (email);
+      const result = await validateUser (email);
         if (result.error) {
-            alert("Falha ao validar e-mail");
+            alert("Falha ao validar e-mail. Que saco");
             return;
-        }
+        }  
 
         localStorage.setItem("@WalletApp:userEmail", result.email);
         localStorage.setItem("@WalletApp:userName", result.name);
         localStorage.setItem("@WalletApp:userId", result.id);
-        window.open("./src/pages/home/index.html", "_self");
-        //"src\pages\home\index.html"
-}
+        window.open("./src/pages/home/index.html", "_self"); 
+       // window.open("wallet app front-end\src\pages\home\index.html", "_self");
+    }
