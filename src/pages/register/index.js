@@ -1,9 +1,9 @@
-const onCallRegister = async (email, name) => { // chama a função e espera a resposta da API
+ const onCallRegister = async (email, name) => { // chama a função e espera a resposta da API
     try {
         const data = { email, name }
     
         const response = await fetch (
-            'https://mp-wallet-app-api.herokuapp.com/users',
+            'https://mp-wallet-app-api.herokuapp.com/users/',
          { // mozila firefox.. site de codigos
             method: "POST",
             mode: "cors",
@@ -19,7 +19,7 @@ const onCallRegister = async (email, name) => { // chama a função e espera a r
     } catch (error) {
         return{error}
     };    
-};
+}; 
 
 const onRegister = async () => {
     const email = document.getElementById("input-email").value;
@@ -35,7 +35,7 @@ const onRegister = async () => {
         return;
     }
 
-    const result = await onCallRegister(email, name)
+     const result = await onCallRegister(email, name)
 
     if (result.error) {
         alert("Falha ao validar e-mail");
@@ -44,13 +44,14 @@ const onRegister = async () => {
     localStorage.setItem("@WalletApp:userEmail", result.email);
     localStorage.setItem("@WalletApp:userName", result.name);
     localStorage.setItem("@WalletApp:userId", result.id);
-    window.open("../home/index.html", "_self");
+    window.open("../home/index.html", "_self"); 
 }
-
-window.onload = () => {
-    const form = document.getElementById("form-register")
-    form.onsubmit = (event) => {
-        event.preventDefault();
-        onRegister(); // chamar a função de dados minimos cadastro
-    }
+ if (typeof window !== "undefined") {
+      window.onload = () => {
+      const form = document.getElementById("form-register")
+      form.onsubmit = (event) => {
+      event.preventDefault();
+      onRegister(); // chamar a função de dados minimos cadastro
+    }  
+ } 
 }
